@@ -5,28 +5,28 @@ import { ICreateProduct } from "../../interfaces/ICreateProduct";
 import { ServerError } from "../../../../error/ServerError";
 
 export class CreateProductUseCase {
-   async createProducts({name, price, description, id}: ICreateProduct): Promise<Product> {
+   async createProducts({title, price, description}: ICreateProduct): Promise<Product> {
 
-      const productAlreadyExists = await prisma.product.findUnique({
+      // TODO: Validando e verificando se o produto já existe
+      const productAlreadyExisting = await prisma.product.findUnique({
          where: {
-            id
+            title,
          }
       });
 
-      // TODO: Validando se o produto já existe
-      if (productAlreadyExists) {
-         throw new ServerError("Existing product!!");
+      if (productAlreadyExisting) {
+         throw new ServerError("Existing product!");
       }
 
       //TODO: Criando Produto no banco
-      const product = await prisma.product.create({
+      const products = await prisma.product.create({
          data: {
-            name,
+            title,
             price,
             description,
          }
       });
 
-      return product;
+      return products;
    }
 }

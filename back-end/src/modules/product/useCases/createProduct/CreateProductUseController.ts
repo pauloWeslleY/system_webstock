@@ -3,10 +3,10 @@ import { CreateProductUseCase } from "./CreateProductUseCase";
 
 export class CreateProductUseController {
    async handleSendCreate(req: Request, res: Response) {
-      const { name, price, description } = req.body;
+      const { title, price, description } = req.body;
       const createProductUseCase = new CreateProductUseCase();
       const data_result = await createProductUseCase.createProducts({
-         name,
+         title,
          price,
          description
       });

@@ -12,8 +12,8 @@ datasource db {
 
 model User {
    id         String   @id @default(uuid())
-   name       String
    email      String   @unique
+   name       String
    created_at DateTime @default(now())
    updated_at DateTime @updatedAt
 
@@ -21,10 +21,12 @@ model User {
 }
 
 model Product {
-   id          String  @id @default(uuid())
-   name        String  @unique
+   id          String   @id @default(uuid())
+   title       String   @unique
    price       Int
-   description String? @unique
+   description String?  @unique
+   created_at  DateTime @default(now())
+   updated_at  DateTime @updatedAt
 
-   @@map("product")
+   @@map("products")
 }

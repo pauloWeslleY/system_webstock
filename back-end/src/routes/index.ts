@@ -5,6 +5,6 @@ import { productRoutes } from "./product.routes";
 const route = Router();
 
 route.use("/users", userRoutes);
-route.use("/product", productRoutes);
+route.use("/products", productRoutes);
 
 export { route };
