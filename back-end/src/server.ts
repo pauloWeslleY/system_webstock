@@ -11,6 +11,7 @@ const prisma = new PrismaClient({
 server.listen(8080, () => {
    console.log("Server is running on port 8080 🚀!");
 });
+
 server.use(express.json());
 server.use(route);
 server.use((error: Error, request: Request, response: Response, next: NextFunction) => {

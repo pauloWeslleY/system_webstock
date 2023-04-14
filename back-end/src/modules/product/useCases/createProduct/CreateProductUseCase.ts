@@ -5,7 +5,7 @@ import { ICreateProduct } from "../../interfaces/ICreateProduct";
 import { ServerError } from "../../../../error/ServerError";
 
 export class CreateProductUseCase {
-   async createProducts({title, price, description}: ICreateProduct): Promise<Product> {
+   async createProducts({title, price, description, imageUrl}: ICreateProduct): Promise<Product> {
 
       // TODO: Validando e verificando se o produto já existe
       const productAlreadyExisting = await prisma.product.findUnique({
@@ -14,6 +14,7 @@ export class CreateProductUseCase {
          }
       });
 
+      // TODO: Fazendo a validação de o produto já é existente
       if (productAlreadyExisting) {
          throw new ServerError("Existing product!");
       }
@@ -24,6 +25,7 @@ export class CreateProductUseCase {
             title,
             price,
             description,
+            imageUrl
          }
       });
 

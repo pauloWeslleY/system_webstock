@@ -21,12 +21,14 @@ model User {
 }
 
 model Product {
-   id          String   @id @default(uuid())
-   title       String   @unique
+   id          String  @id @default(uuid())
+   title       String  @unique
    price       Int
-   description String?  @unique
-   created_at  DateTime @default(now())
-   updated_at  DateTime @updatedAt
+   description String? @unique
+   imageUrl    String?
+
+   created_at DateTime @default(now())
+   updated_at DateTime @updatedAt
 
    @@map("products")
 }

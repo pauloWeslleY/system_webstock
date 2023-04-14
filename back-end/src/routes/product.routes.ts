@@ -5,6 +5,7 @@ import { CreateProductUseController } from "./../modules/product/useCases/create
 const productRoutes = Router();
 const createProductController = new CreateProductUseController();
 const getProductAllController = new GetProductAllController();
+// TODO: Routes
 productRoutes.post("/", createProductController.handleSendCreate);
 productRoutes.get("/products_all", getProductAllController.handleGetProduct);
 

@@ -14,7 +14,7 @@ export class CreateUserUseCase {
       });
 
       if (userAlreadyExists) {
-         throw new ServerError("Existing User!!!");
+         throw new ServerError("Existing User!");
       }
 
       //TODO: Criando Produto no banco

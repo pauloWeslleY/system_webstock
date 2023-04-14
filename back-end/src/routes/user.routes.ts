@@ -5,6 +5,7 @@ import { CreateUserUseController } from "./../modules/user/useCases/createUser/C
 const userRoutes = Router();
 const createUserUseController = new CreateUserUseController();
 const getUserUseController = new GetUserUseController();
+// TODO: Routes
 userRoutes.post("/", createUserUseController.handleSendCreate);
 userRoutes.get("/users_all", getUserUseController.handleGetUsers);
 
