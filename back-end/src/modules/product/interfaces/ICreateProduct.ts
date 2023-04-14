@@ -1,6 +1,5 @@
 interface ICreateProduct {
-   id?: string;
-   name: string;
+   title: string;
    price: number;
    description: string;
 }
