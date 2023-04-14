@@ -6,7 +6,7 @@ const userRoutes = Router();
 const createUserUseController = new CreateUserUseController();
 const getUserUseController = new GetUserUseController();
 // TODO: Routes
-userRoutes.post("/", createUserUseController.handleSendCreate);
+userRoutes.post("/", createUserUseController.handleSendCreateUser);
 userRoutes.get("/users_all", getUserUseController.handleGetUsers);
 
 export { userRoutes };

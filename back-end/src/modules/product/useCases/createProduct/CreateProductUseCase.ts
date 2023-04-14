@@ -6,7 +6,6 @@ import { ServerError } from "../../../../error/ServerError";
 
 export class CreateProductUseCase {
    async createProducts({title, price, description, imageUrl}: ICreateProduct): Promise<Product> {
-
       // TODO: Validando e verificando se o produto já existe
       const productAlreadyExisting = await prisma.product.findUnique({
          where: {
@@ -20,7 +19,7 @@ export class CreateProductUseCase {
       }
 
       //TODO: Criando Produto no banco
-      const products = await prisma.product.create({
+      const product = await prisma.product.create({
          data: {
             title,
             price,
@@ -29,6 +28,6 @@ export class CreateProductUseCase {
          }
       });
 
-      return products;
+      return product;
    }
 }

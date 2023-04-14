@@ -2,15 +2,15 @@ import { Request, Response } from "express";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
 export class CreateUserUseController {
-   async handleSendCreate(req: Request, res: Response) {
-      const { name, email } = req.body;
+   async handleSendCreateUser(request: Request, response: Response) {
+      const { name, email, password } = request.body;
       const createProductUseCase = new CreateUserUseCase();
-      const data_result = await createProductUseCase.createUser({
+      const data_result = await createProductUseCase.executeCreationNewUser({
          name,
-         email
+         email,
+         password
       });
 
-      return res.status(201).json(data_result);
-
+      return response.status(201).json(data_result);
    }
 }

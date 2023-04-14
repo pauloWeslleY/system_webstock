@@ -6,7 +6,7 @@ const productRoutes = Router();
 const createProductController = new CreateProductUseController();
 const getProductAllController = new GetProductAllController();
 // TODO: Routes
-productRoutes.post("/", createProductController.handleSendCreate);
+productRoutes.post("/", createProductController.handleSendCreateProduct);
 productRoutes.get("/products_all", getProductAllController.handleGetProduct);
 
 export { productRoutes };
