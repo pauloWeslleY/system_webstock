@@ -1,35 +1,58 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-   provider = "prisma-client-js"
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "../ERD.svg"
+  theme    = "dark"
 }
 
 datasource db {
-   provider = "sqlite"
-   url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-   id         String   @id @default(cuid())
-   email      String   @unique
-   password   Int      @unique
-   name       String
-   created_at DateTime @default(now())
-   updated_at DateTime @updatedAt
+  id         String   @id @default(cuid())
+  email      String   @unique
+  password   Int      @unique
+  name       String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
-   @@map("users")
+  @@map("users")
+}
+
+model Categories {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  products Product[]
+
+  @@map("category")
 }
 
 model Product {
-   id          String  @id @default(cuid())
-   title       String  @unique
-   price       Int
-   description String? @unique
-   imageUrl    String?
+  id          String     @id @default(cuid())
+  title       String     @unique
+  price       Float
+  description String?    @unique
+  quantity    Int
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  category_id String
+  imageUrl    Images[]
+  category    Categories @relation(fields: [category_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-   created_at DateTime @default(now())
-   updated_at DateTime @updatedAt
+  @@map("products")
+}
 
-   @@map("products")
+model Images {
+  id         String  @id @default(cuid())
+  product_id String
+  image_url  String
+  product    Product @relation(fields: [product_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@unique([product_id, image_url])
+  @@map("images")
 }
